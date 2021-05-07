@@ -8,9 +8,13 @@ const workoutSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    exercise: [Exercise.schema]
+    exercises: [Exercise.schema]
 
-})
+},
+{
+    versionKey: false
+}
+)
 
 const Workout = mongoose.model('Workout', workoutSchema)
 

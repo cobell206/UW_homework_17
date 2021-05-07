@@ -4,15 +4,22 @@ var path = require('path')
 
 
 // Post new workout to recent workout plan
+router.put('/api/workouts/:id', async (req, res) => {
+    try {
+        const updatedWorkout = await db.Workout.findOneAndUpdate({ _id: req.params.id }, { $push: { exercises: req.body } }, { new: true });
+        console.log(req.body);
+        console.log(req.params.id);
+        res.status(200).json(updatedWorkout)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
 
 // Add new excersise to new workout plan
 router.post('/api/workouts', async (req, res) => {
     try {
-        // const new_workout = await db.Workout.create(req.body)
-        // const new_workout = await db.Workout.create()
-        console.log(req.body);
-        res.status(200)
-        // res.status(200).json(new_workout)
+        const new_workout = await db.Workout.create({})
+        res.status(200).json(new_workout)
     } catch (error) {
         res.status(500).json(error)
     }

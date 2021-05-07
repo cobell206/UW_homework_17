@@ -26,6 +26,9 @@ const exerciseSchema = new Schema({
     sets: {
         type: Number
     }
+},
+{
+    _id: false
 })
 
 const Exercise = mongoose.model('Exercise', exerciseSchema)
