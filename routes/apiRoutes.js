@@ -2,7 +2,7 @@ const db = require("../models");
 const router = require("express").Router();
 
 // Post new workout to recent workout plan
-router.put('/api/workouts/:id', async (req, res) => {
+router.put('/workouts/:id', async (req, res) => {
     try {
 
         // Update database
@@ -19,7 +19,7 @@ router.put('/api/workouts/:id', async (req, res) => {
 })
 
 // Add new excersise to new workout plan
-router.post('/api/workouts', async (req, res) => {
+router.post('/workouts', async (req, res) => {
     try {
         const new_workout = await db.Workout.create({})
         res.status(200).json(new_workout)
@@ -29,7 +29,7 @@ router.post('/api/workouts', async (req, res) => {
 })
 
 // Return weight from last seven
-router.get('/api/workouts', async (req, res) => {
+router.get('/workouts', async (req, res) => {
     try {
 
         // get workouts
@@ -41,7 +41,7 @@ router.get('/api/workouts', async (req, res) => {
     }
 })
 
-router.get('/api/workouts/range', async (req, res) => {
+router.get('/workouts/range', async (req, res) => {
     try {
         filter = { totalDuration: { $sum: "$exercises.duration" } }
         const workout_range = await db.Workout.aggregate([{ $addFields: filter }]).sort({ _id: -1 }).limit(7);
