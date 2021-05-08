@@ -17,16 +17,13 @@ app.use(express.static('public'))
 
 app.use(routes)
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", 
+{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false
 })
-
-// app.use(require('./routes/api.js'))
-
-// app.set('view engine', 'html')
 
 app.listen(PORT, () => {
     console.log(`App running on ${PORT}`);
